@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/php/Dockerfile
+    container_name: marakas
+    restart: unless-stopped
+    working_dir: /var/www/marakas
+    tty: true
+    volumes:
+      - ./app:/var/www/marakas
+    ports:
+      - "9012:9000"
+    networks:
+      - marakas
+
+  nginx:
+    image: nginx:alpine
+    container_name: marakas_nginx
+    restart: unless-stopped
+    ports:
+      - "8012:80"
+    volumes:
+      - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/var/www/marakas
+    depends_on:
+      - app
+    networks:
+      - marakas
+
+networks:
+  marakas:
+    driver: bridge

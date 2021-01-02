@@ -1,0 +1,24 @@
+{
+  "name": "vendor_name/app",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "vovichua",
+      "email": "vovichua@gmail.com"
+    }
+  ],
+  "autoload":{
+    "psr-4":{
+      "Src\\": "src/",
+      "Src\\Core\\Router\\": "src/core/router/",
+      "App\\Controllers\\": "src/app/controllers/",
+      "Src\\Core\\View\\": "src/core/view/",
+      "Src\\Libs\\Services\\": "src/libs/services/"
+    }
+  },
+  "require": {
+    "ext-dom": "*"
+  }
+}
